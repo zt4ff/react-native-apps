@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
