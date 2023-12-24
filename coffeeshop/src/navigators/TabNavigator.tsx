@@ -22,6 +22,7 @@ const TabNavigator = () => {
         tabBarShowLabel: false,
         tabBarBackground: () => (
           <BlurView
+            // this is set to empty string to allow it work
             overlayColor=""
             blurAmount={15}
             style={styles.blurViewStyle}
@@ -43,9 +44,51 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Favourite" component={FavouritesScreen} />
-      <Tab.Screen name="History" component={OrderHistoryScreen} />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <CustomIcons
+              name="cart"
+              size={25}
+              color={
+                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
+              }
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favourite"
+        component={FavouritesScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <CustomIcons
+              name="like"
+              size={25}
+              color={
+                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
+              }
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={OrderHistoryScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <CustomIcons
+              name="bell"
+              size={25}
+              color={
+                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
+              }
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
