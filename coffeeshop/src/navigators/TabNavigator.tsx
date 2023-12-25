@@ -8,7 +8,6 @@ import CustomIcons from '../components/CustomIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../theme/theme';
-import {BlurView} from '@react-native-community/blur';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,14 +19,6 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
-        tabBarBackground: () => (
-          <BlurView
-            // this is set to empty string to allow it work
-            overlayColor=""
-            blurAmount={15}
-            style={styles.blurViewStyle}
-          />
-        ),
       }}>
       <Tab.Screen
         name="Home"
@@ -101,13 +92,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     elevation: 0,
     borderTopColor: 'transparent',
-  },
-  blurViewStyle: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });
 
