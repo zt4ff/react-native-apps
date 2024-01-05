@@ -23,7 +23,6 @@ const GameScreen = (props) => {
       </View>
       <View>
         <Text>Higher or lower?</Text>
-        <Text>+ -</Text>
       </View>
       <View>
         <Text>LOG ROUND</Text>
