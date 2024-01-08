@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { COLORS } from "../contants/colors";
+import PrimaryButton from "../components/PrimaryButton";
 
 const generateRandomNumber = (min, max, exclude) => {
   const rndNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -11,21 +12,50 @@ const generateRandomNumber = (min, max, exclude) => {
   return rndNumber;
 };
 
+let minBoundary = 1;
+let maxBoundary = 100;
+
 const GameScreen = (props) => {
   const { userNumber } = props;
-  const intialGuess = generateRandomNumber(1, 100, userNumber);
+  const intialGuess = generateRandomNumber(
+    minBoundary,
+    maxBoundary,
+    userNumber
+  );
   const [currentGuess, setCurrentGuess] = useState(intialGuess);
+
+  const nextGuessHandler = (direction /** "lower", "higher" */) => {
+    if (direction === "lower") {
+      maxBoundary = currentGuess;
+      minBoundary = 1;
+    } else {
+      minBoundary = currentGuess + 1;
+      maxBoundary = 100;
+    }
+    const newRndNumber = generateRandomNumber(
+      minBoundary,
+      maxBoundary,
+      currentGuess
+    );
+    setCurrentGuess(newRndNumber);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Opponent's Guess</Text>
+      <Text style={styles.title}>Opponent's Guess </Text>
       <View style={styles.numberContainer}>
         <Text style={styles.numberText}>{currentGuess}</Text>
       </View>
       <View>
         <Text>Higher or lower?</Text>
-      </View>
-      <View>
-        <Text>LOG ROUND</Text>
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton onPress={() => nextGuessHandler("higher")}>
+            +
+          </PrimaryButton>
+          <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+            -
+          </PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -60,5 +90,11 @@ const styles = StyleSheet.create({
     color: COLORS.yellow,
     fontSize: 36,
     fontWeight: "bold",
+  },
+  buttonsContainer: {
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
