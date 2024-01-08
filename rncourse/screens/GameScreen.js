@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { COLORS } from "../contants/colors";
 import PrimaryButton from "../components/PrimaryButton";
+import { Ionicons } from "@expo/vector-icons";
 
 const generateRandomNumber = (min, max, exclude) => {
   const rndNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -50,10 +51,10 @@ const GameScreen = (props) => {
         <Text>Higher or lower?</Text>
         <View style={styles.buttonsContainer}>
           <PrimaryButton onPress={() => nextGuessHandler("higher")}>
-            +
+            <Ionicons name="md-add" size={24} color="white" />
           </PrimaryButton>
           <PrimaryButton onPress={() => nextGuessHandler("lower")}>
-            -
+            <Ionicons name="md-remove" size={24} color="white" />
           </PrimaryButton>
         </View>
       </View>
